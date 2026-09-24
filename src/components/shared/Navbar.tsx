@@ -31,7 +31,7 @@ const Navbar = () => {
                         {links}
                     </ul>
                 </div>
-                <div className="navbar-end gap-4">
+                <div className="navbar-end gap-2 sm:gap-4">
                     <p>Plan <span className="bg-[#C2F800] px-2 rounded-2xl text-black">0</span></p>
                     <p>Saved <span className="rounded-2xl px-2 border border-white bg-am">0</span></p>
                 </div>
