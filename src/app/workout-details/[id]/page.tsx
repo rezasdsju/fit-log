@@ -66,11 +66,11 @@ const BookDetailPage = async ({ params }: { params: Promise<{ id: string }> }) =
                         </span>
                         <button className="text-[#0F1115]">Add to today&apos;s plan</button>
                     </div>
-                    <div className="flex items-center bg-[#374151]gap-2 rounded px-4 py-2 border border-[#374151]">
+                    <div className="flex items-center bg-[#374151] gap-2 rounded px-4 py-2 border border-[#374151]">
                         <span>
                             <FaRegBookmark />
                         </span>
-                        <button className="text-[#E5E7EB] ">Add to today&apos;s plan</button>
+                        <button className="text-[#E5E7EB] ">Save for later</button>
                     </div>
                 </div>
             </div>
