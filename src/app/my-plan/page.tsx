@@ -7,13 +7,29 @@ import ListedWorkoutFallback from "@/components/shared/ListedWorkoutFallback";
 
 
 const MyPlanPage = () => {
+    const [sortBy, setSortBy] = useState<'duration'|'calories'|'rating'>('duration')
     const [todayPlanSelected, setTodayPlanSelected] = useState(false)
     const { todayPlan} = useContext(WorkoutContext)
     const handleTodayPlanSelected = ()=>{
         setTodayPlanSelected(!todayPlanSelected)
     }
+
+    const sortWorkout = (workout:IWorkout[])=>{
+        const sortedWorkout = [...workout]
+        if (sortBy==='duration'){
+            sortedWorkout.sort((a,b)=>b.duration-a.duration)
+        } else if (sortBy==='calories'){
+            sortedWorkout.sort((a,b)=>b.caloriesBurned -a.caloriesBurned)
+        } else {
+            sortedWorkout.sort((a,b)=>b.rating-a.rating)
+        }
+        return sortedWorkout
+    }
+    const sortedTodayPlan = sortWorkout(todayPlan)
     const todayPlanDurationTotal = todayPlan.map(workout=>workout.duration).reduce((elem,acc)=>elem+acc, 0)
     const todayPlanCaloriesTotal = todayPlan.map(workout=>workout.caloriesBurned).reduce((elem,acc)=>elem+acc, 0)
+
+
 
     return (
         <div className="px-3 sm:px-5 py-5 sm:py-10 space-y-4">
@@ -41,7 +57,7 @@ const MyPlanPage = () => {
                     <input onClick={handleTodayPlanSelected} type="radio" name="my_tabs_2" className="tab" aria-label="Today’s Plan" />
                     <div className="tab-content border-base-300 bg-base-100 px-2 py-2 sm:px-5 sm:py-5 mt-5">
                         {
-                           todayPlan.length>0? todayPlan.map((workout:IWorkout)=> <ListedWorkoutCard key={workout.id} workout={workout}></ListedWorkoutCard>): <ListedWorkoutFallback></ListedWorkoutFallback>
+                           sortedTodayPlan.length>0? sortedTodayPlan.map((workout:IWorkout)=> <ListedWorkoutCard key={workout.id} workout={workout}></ListedWorkoutCard>): <ListedWorkoutFallback></ListedWorkoutFallback>
                         }
                     </div>
 
@@ -55,11 +71,11 @@ const MyPlanPage = () => {
                         <h4 className="hidden min-[400px]:block whitespace-nowrap">Sort By</h4>
 
                         
-                            <select defaultValue="Server location" className="select select-neutral">
-                                <option disabled={true}>Server location</option>
-                                <option>North America</option>
-                                <option>EU west</option>
-                                <option>South East Asia</option>
+                            <select onChange={(e)=>setSortBy(e.target.value as 'duration'|'calories'|'rating')} defaultValue="Server location" className="select select-neutral">
+                                <option disabled={true}> Sort</option>
+                                <option value='duration'>Duration</option>
+                                <option value='calories'>Calories</option>
+                                <option value='rating'>Rating</option>
                             </select>
                         
                     </div>
