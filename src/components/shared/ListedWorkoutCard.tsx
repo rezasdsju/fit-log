@@ -1,9 +1,9 @@
 import type { IWorkout } from "@/types/exerciseDataTypes";
 import Image from "next/image";
-import { FaRegClock, FaRegStar, FaTimes } from "react-icons/fa";
+import { FaRegClock, FaRegStar } from "react-icons/fa";
 import { FaFireFlameCurved } from "react-icons/fa6";
 import { TiTick } from "react-icons/ti";
-
+import TodayPlanDeleteButton from "../deleteButton/TodayPlanDeleteButton";
 const ListedWorkoutCard = ({ workout }: { workout: IWorkout }) => {
     return (
         <div className="sm:flex sm:justify-between bg-[#232732] border border-[#8A92A0] px-4 py-2 my-2 rounded-2xl">
@@ -23,13 +23,13 @@ const ListedWorkoutCard = ({ workout }: { workout: IWorkout }) => {
                             <span className="text-[#CCFF00]"><FaFireFlameCurved /></span>
                             <p className="text-[#8A92A0]">
                                 {workout.caloriesBurned} kcal
-                                </p>
+                            </p>
                         </div>
                         <div className='flex items-center gap-1'>
                             <span className="text-[#CCFF00]"><FaRegStar /></span>
                             <p className="text-[#8A92A0]">
                                 {workout.rating}
-                                </p>
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -37,8 +37,7 @@ const ListedWorkoutCard = ({ workout }: { workout: IWorkout }) => {
             <div className="flex items-center justify-center gap-4 pt-3 sm:pt-0">
                 <button className="bg-[#374151] text-[#FFFFFF] px-3 py-1 rounded-xl border border-[#8A92A0]">View Details</button>
                 <button className="bg-[#CCFF00] text-[#000000] px-1 min-[400px]:px-3 py-1 rounded-xl flex items-center"><span><TiTick /></span>Mark as Done</button>
-                <span><FaTimes />
-                </span>
+                <TodayPlanDeleteButton workout={workout}></TodayPlanDeleteButton>
             </div>
         </div>
     );
