@@ -1,7 +1,11 @@
 import type { IWorkout } from "@/types/exerciseDataTypes";
 import Image from "next/image";
 import { FaRegBookmark } from "react-icons/fa";
-import { LuCalendarPlus2 } from "react-icons/lu";
+// import { LuCalendarPlus2 } from "react-icons/lu";
+import TodayPlanButton from "@/components/workoutDetails/TodayPlanButton";
+
+
+
 const BookDetailPage = async ({ params }: { params: Promise<{ id: string }> }) => {
     const { id } = await params
     const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}`)
@@ -60,12 +64,8 @@ const BookDetailPage = async ({ params }: { params: Promise<{ id: string }> }) =
                     <li className="text-[#D1D5DB]">Keep shoulder blades pinched and a natural arch in the back.</li>
                 </ol>
                 <div className="flex py-5 gap-4">
-                    <div className="flex items-center bg-[#CCFF00] gap-2 rounded px-4 py-2">
-                        <span>
-                            <LuCalendarPlus2 />
-                        </span>
-                        <button className="text-[#0F1115]">Add to today&apos;s plan</button>
-                    </div>
+                    <TodayPlanButton workout={workout}></TodayPlanButton>
+
                     <div className="flex items-center bg-[#374151] gap-2 rounded px-4 py-2 border border-[#374151]">
                         <span>
                             <FaRegBookmark />

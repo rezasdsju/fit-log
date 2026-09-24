@@ -3,7 +3,11 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import logo from '@/assets/logo.png'
+import { useContext } from "react";
+import { WorkoutContext } from "@/context/WorkoutContext";
 const Navbar = () => {
+        const { todayPlan} = useContext(WorkoutContext)
+    
     const pathname = usePathname()
     const links = <>
         <li><Link className={pathname==='/'? 'text-[#C2F800]':''} href='/'>Workouts</Link></li>
@@ -32,7 +36,7 @@ const Navbar = () => {
                     </ul>
                 </div>
                 <div className="navbar-end gap-2 sm:gap-4">
-                    <p>Plan <span className="bg-[#C2F800] px-2 rounded-2xl text-black">0</span></p>
+                    <p>Plan <span className="bg-[#C2F800] px-2 rounded-2xl text-black">{todayPlan.length}</span></p>
                     <p>Saved <span className="rounded-2xl px-2 border border-white bg-am">0</span></p>
                 </div>
             </div>
