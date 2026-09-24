@@ -8,38 +8,33 @@ interface IWorkoutContext {
     setTodayPlan: React.Dispatch<React.SetStateAction<IWorkout[]>>,
     saved:IWorkout[],
     setSaved:React.Dispatch<React.SetStateAction<IWorkout[]>>,
-    todayPlanSelected: boolean,
-    setTodayPlanSelected:React.Dispatch<React.SetStateAction<boolean>>,
-    isSavedSelected: boolean,
-    setIsSavedSelected:React.Dispatch<React.SetStateAction<boolean>>
+    selectedTab: 'saved'|'today-plan',
+    setSelectedTab: React.Dispatch<React.SetStateAction<'saved'|'today-plan'>>
 }
 export const WorkoutContext = createContext<IWorkoutContext>({
     todayPlan:[],
     setTodayPlan:()=>{},
     saved:[],
     setSaved:()=>{},
-    todayPlanSelected: false,
-    setTodayPlanSelected: ()=>{},
-    isSavedSelected: true,
-    setIsSavedSelected:()=>{}
+    selectedTab: 'saved',
+    setSelectedTab: ()=>{}
 })
 
 
 const WorkoutProvider = ({ children }: { children: React.ReactNode }) => {
     const [todayPlan, setTodayPlan] = useState<IWorkout[]>([])
     const [saved, setSaved] = useState<IWorkout[]>([])
-    const [todayPlanSelected, setTodayPlanSelected] = useState(false)
-    const [isSavedSelected, setIsSavedSelected] = useState(true)
+    const [selectedTab,setSelectedTab ] = useState<'saved'|'today-plan'>('saved')
+
 
     const sharedData = {
         todayPlan,
         setTodayPlan,
         saved,
         setSaved,
-        todayPlanSelected,
-        setTodayPlanSelected,
-        isSavedSelected,
-        setIsSavedSelected
+        selectedTab,
+        setSelectedTab
+
         
     }
     return (

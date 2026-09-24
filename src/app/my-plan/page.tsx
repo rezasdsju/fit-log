@@ -10,14 +10,12 @@ const MyPlanPage = () => {
     const [sortBy, setSortBy] = useState<'duration'|'calories'|'rating'>('duration')
     // const [todayPlanSelected, setTodayPlanSelected] = useState(false)
     
-    const { todayPlan, saved,todayPlanSelected, setTodayPlanSelected, setIsSavedSelected} = useContext(WorkoutContext)
-    const handleTodayPlanSelected = ()=>{
-        setTodayPlanSelected(true)
-        setIsSavedSelected(false)
+    const { todayPlan, saved,selectedTab, setSelectedTab} = useContext(WorkoutContext)
+    const handleTodaySelected = ()=>{
+        setSelectedTab('today-plan')
     }
     const handleSavedSelected = ()=>{
-        setIsSavedSelected(true)
-        setTodayPlanSelected(false)
+        setSelectedTab('saved')
     }
     const sortWorkout = (workout:IWorkout[])=>{
         const sortedWorkout = [...workout]
@@ -47,21 +45,21 @@ const MyPlanPage = () => {
             <div className="grid grid-cols-3 border-[1.5px] border-[#232732] bg-[#232732] px-3 sm:px-6 py-3 rounded-2xl">
                 <div className="text-[#8A92A0]">
                     <h4>Exercises</h4>
-                    <p className="text-[#CCFF00] text-3xl">{todayPlanSelected?todayPlan.length:saved.length}</p>
+                    <p className="text-[#CCFF00] text-3xl">{selectedTab==='today-plan'?todayPlan.length:saved.length}</p>
                 </div>
                 <div className="text-[#8A92A0] ">
                     <h4>Minutes</h4>
-                    <p className="text-[#FFFFFF] text-3xl">{todayPlanSelected?todayPlanDurationTotal:savedWorkoutDurationTotal}</p>
+                    <p className="text-[#FFFFFF] text-3xl">{selectedTab==='today-plan'?todayPlanDurationTotal:savedWorkoutDurationTotal}</p>
                 </div>
                 <div className="text-[#8A92A0]">
                     <h4>Calories</h4>
-                    <p className="text-[#FFFFFF] text-3xl">{todayPlanSelected?todayPlanCaloriesTotal:savedWorkoutCaloriesTotal}</p>
+                    <p className="text-[#FFFFFF] text-3xl">{selectedTab==='today-plan'?todayPlanCaloriesTotal:savedWorkoutCaloriesTotal}</p>
                 </div>
             </div>
             <div className="relative ">
                 {/* name of each tab group should be unique */}
                 <div className="tabs tabs-border w-full ">
-                    <input onClick={handleTodayPlanSelected} type="radio" name="my_tabs_2" className="tab" aria-label="Today’s Plan" />
+                    <input onClick={handleTodaySelected} type="radio" name="my_tabs_2" className="tab" aria-label="Today’s Plan" />
                     <div className="tab-content border-base-300 bg-base-100 px-2 py-2 sm:px-5 sm:py-5 mt-5">
                         {
                            sortedTodayPlan.length>0? sortedTodayPlan.map((workout:IWorkout)=> <ListedWorkoutCard key={workout.id} workout={workout}></ListedWorkoutCard>): <ListedWorkoutFallback></ListedWorkoutFallback>

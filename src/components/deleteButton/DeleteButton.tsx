@@ -7,14 +7,14 @@ import { FaTimes } from "react-icons/fa";
 
 
 const DeleteButton = ({ workout }: { workout: IWorkout }) => {
-    const { todayPlan, setTodayPlan, saved, setSaved, todayPlanSelected } = useContext(WorkoutContext)
+    const { todayPlan, setTodayPlan, saved, setSaved, selectedTab } = useContext(WorkoutContext)
 
     const handleDelete = () => {
-        if (todayPlanSelected) {
-            const remainingTodayPlan = todayPlan.filter(p => p !== workout)
+        if (selectedTab==='today-plan') {
+            const remainingTodayPlan = todayPlan.filter(p => p.id !== workout.id)
             setTodayPlan(remainingTodayPlan)
         } else {
-            const remainingSaved = saved.filter(s => s !== workout)
+            const remainingSaved = saved.filter(s => s.id !== workout.id)
             setSaved(remainingSaved)
         }
     }
