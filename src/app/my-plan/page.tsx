@@ -9,7 +9,7 @@ import ListedWorkoutFallback from "@/components/shared/ListedWorkoutFallback";
 const MyPlanPage = () => {
     const [sortBy, setSortBy] = useState<'duration'|'calories'|'rating'>('duration')
     const [todayPlanSelected, setTodayPlanSelected] = useState(false)
-    const { todayPlan} = useContext(WorkoutContext)
+    const { todayPlan, saved} = useContext(WorkoutContext)
     const handleTodayPlanSelected = ()=>{
         setTodayPlanSelected(!todayPlanSelected)
     }
@@ -26,11 +26,13 @@ const MyPlanPage = () => {
         return sortedWorkout
     }
     const sortedTodayPlan = sortWorkout(todayPlan)
+    const sortedSaved = sortWorkout(saved)
     const todayPlanDurationTotal = todayPlan.map(workout=>workout.duration).reduce((elem,acc)=>elem+acc, 0)
     const todayPlanCaloriesTotal = todayPlan.map(workout=>workout.caloriesBurned).reduce((elem,acc)=>elem+acc, 0)
 
+    const savedWorkoutDurationTotal = saved.map(workout=>workout.duration).reduce((elem,acc)=>elem+acc,0)
 
-
+    const savedWorkoutCaloriesTotal = saved.map(workout=>workout.caloriesBurned).reduce((elem,acc)=>elem+acc,0)
     return (
         <div className="px-3 sm:px-5 py-5 sm:py-10 space-y-4">
             <div>
@@ -40,15 +42,15 @@ const MyPlanPage = () => {
             <div className="grid grid-cols-3 border-[1.5px] border-[#232732] bg-[#232732] px-3 sm:px-6 py-3 rounded-2xl">
                 <div className="text-[#8A92A0]">
                     <h4>Exercises</h4>
-                    <p className="text-[#CCFF00] text-3xl">{todayPlanSelected?todayPlan.length:''}</p>
+                    <p className="text-[#CCFF00] text-3xl">{todayPlanSelected?todayPlan.length:saved.length}</p>
                 </div>
                 <div className="text-[#8A92A0] ">
                     <h4>Minutes</h4>
-                    <p className="text-[#FFFFFF] text-3xl">{todayPlanSelected?todayPlanDurationTotal:''}</p>
+                    <p className="text-[#FFFFFF] text-3xl">{todayPlanSelected?todayPlanDurationTotal:savedWorkoutDurationTotal}</p>
                 </div>
                 <div className="text-[#8A92A0]">
                     <h4>Calories</h4>
-                    <p className="text-[#FFFFFF] text-3xl">{todayPlanSelected?todayPlanCaloriesTotal:''}</p>
+                    <p className="text-[#FFFFFF] text-3xl">{todayPlanSelected?todayPlanCaloriesTotal:savedWorkoutCaloriesTotal}</p>
                 </div>
             </div>
             <div className="relative ">
@@ -62,7 +64,12 @@ const MyPlanPage = () => {
                     </div>
 
                     <input type="radio" name="my_tabs_2" className="tab" aria-label="Saved" defaultChecked />
-                    <div className="tab-content border-base-300 bg-base-100 p-10 mt-5">Saved</div>
+                    <div className="tab-content border-base-300 bg-base-100 px-2 py-2 sm:px-5 sm:py-5 mt-5">
+                        {
+                            sortedSaved.length>0? sortedSaved.map(workout=><ListedWorkoutCard key={workout.id} workout={workout}></ListedWorkoutCard>) :<ListedWorkoutFallback></ListedWorkoutFallback>
+
+                        }
+                    </div>
 
                 </div>
 

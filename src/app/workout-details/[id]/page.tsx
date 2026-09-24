@@ -1,10 +1,10 @@
 import type { IWorkout } from "@/types/exerciseDataTypes";
 import Image from "next/image";
-import { FaRegBookmark } from "react-icons/fa";
+// import { FaRegBookmark } from "react-icons/fa";
 // import { LuCalendarPlus2 } from "react-icons/lu";
 import TodayPlanButton from "@/components/workoutDetails/TodayPlanButton";
 
-
+import SaveLaterButton from "@/components/workoutDetails/SaveLaterButton";
 
 const BookDetailPage = async ({ params }: { params: Promise<{ id: string }> }) => {
     const { id } = await params
@@ -65,13 +65,8 @@ const BookDetailPage = async ({ params }: { params: Promise<{ id: string }> }) =
                 </ol>
                 <div className="flex py-5 gap-4">
                     <TodayPlanButton workout={workout}></TodayPlanButton>
+                    <SaveLaterButton workout={workout}></SaveLaterButton>
 
-                    <div className="flex items-center bg-[#374151] gap-2 rounded px-4 py-2 border border-[#374151]">
-                        <span>
-                            <FaRegBookmark />
-                        </span>
-                        <button className="text-[#E5E7EB] ">Save for later</button>
-                    </div>
                 </div>
             </div>
         </div>

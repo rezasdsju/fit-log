@@ -6,7 +6,7 @@ import logo from '@/assets/logo.png'
 import { useContext } from "react";
 import { WorkoutContext } from "@/context/WorkoutContext";
 const Navbar = () => {
-        const { todayPlan} = useContext(WorkoutContext)
+        const { todayPlan, saved} = useContext(WorkoutContext)
     
     const pathname = usePathname()
     const links = <>
@@ -37,7 +37,7 @@ const Navbar = () => {
                 </div>
                 <div className="navbar-end gap-2 sm:gap-4">
                     <p>Plan <span className="bg-[#C2F800] px-2 rounded-2xl text-black">{todayPlan.length}</span></p>
-                    <p>Saved <span className="rounded-2xl px-2 border border-white bg-am">0</span></p>
+                    <p>Saved <span className="rounded-2xl px-2 border border-white bg-am">{saved.length}</span></p>
                 </div>
             </div>
         </nav>
