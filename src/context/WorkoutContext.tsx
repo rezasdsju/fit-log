@@ -4,27 +4,32 @@ import React, { createContext, useState } from 'react';
 
 
 interface IWorkoutContext {
-    todayPlan:IWorkout[],
+    todayPlan: IWorkout[],
     setTodayPlan: React.Dispatch<React.SetStateAction<IWorkout[]>>,
-    saved:IWorkout[],
-    setSaved:React.Dispatch<React.SetStateAction<IWorkout[]>>,
-    selectedTab: 'saved'|'today-plan',
-    setSelectedTab: React.Dispatch<React.SetStateAction<'saved'|'today-plan'>>
+    saved: IWorkout[],
+    setSaved: React.Dispatch<React.SetStateAction<IWorkout[]>>,
+    selectedTab: 'saved' | 'today-plan',
+    setSelectedTab: React.Dispatch<React.SetStateAction<'saved' | 'today-plan'>>,
+    markAsDone: number[],
+    setMarkAsDone: React.Dispatch<React.SetStateAction<number[]>>
 }
 export const WorkoutContext = createContext<IWorkoutContext>({
-    todayPlan:[],
-    setTodayPlan:()=>{},
-    saved:[],
-    setSaved:()=>{},
+    todayPlan: [],
+    setTodayPlan: () => { },
+    saved: [],
+    setSaved: () => { },
     selectedTab: 'saved',
-    setSelectedTab: ()=>{}
+    setSelectedTab: () => { },
+    markAsDone: [],
+    setMarkAsDone: () => { }
 })
 
 
 const WorkoutProvider = ({ children }: { children: React.ReactNode }) => {
     const [todayPlan, setTodayPlan] = useState<IWorkout[]>([])
     const [saved, setSaved] = useState<IWorkout[]>([])
-    const [selectedTab,setSelectedTab ] = useState<'saved'|'today-plan'>('saved')
+    const [selectedTab, setSelectedTab] = useState<'saved' | 'today-plan'>('saved')
+    const [markAsDone, setMarkAsDone] = useState<number[]>([])
 
 
     const sharedData = {
@@ -33,9 +38,11 @@ const WorkoutProvider = ({ children }: { children: React.ReactNode }) => {
         saved,
         setSaved,
         selectedTab,
-        setSelectedTab
+        setSelectedTab,
+        markAsDone,
+        setMarkAsDone
 
-        
+
     }
     return (
         <WorkoutContext.Provider value={sharedData}>{children}</WorkoutContext.Provider>
