@@ -8,12 +8,17 @@ import ListedWorkoutFallback from "@/components/shared/ListedWorkoutFallback";
 
 const MyPlanPage = () => {
     const [sortBy, setSortBy] = useState<'duration'|'calories'|'rating'>('duration')
-    const [todayPlanSelected, setTodayPlanSelected] = useState(false)
-    const { todayPlan, saved} = useContext(WorkoutContext)
+    // const [todayPlanSelected, setTodayPlanSelected] = useState(false)
+    
+    const { todayPlan, saved,todayPlanSelected, setTodayPlanSelected, setIsSavedSelected} = useContext(WorkoutContext)
     const handleTodayPlanSelected = ()=>{
-        setTodayPlanSelected(!todayPlanSelected)
+        setTodayPlanSelected(true)
+        setIsSavedSelected(false)
     }
-
+    const handleSavedSelected = ()=>{
+        setIsSavedSelected(true)
+        setTodayPlanSelected(false)
+    }
     const sortWorkout = (workout:IWorkout[])=>{
         const sortedWorkout = [...workout]
         if (sortBy==='duration'){
@@ -63,7 +68,7 @@ const MyPlanPage = () => {
                         }
                     </div>
 
-                    <input type="radio" name="my_tabs_2" className="tab" aria-label="Saved" defaultChecked />
+                    <input onClick={handleSavedSelected} type="radio" name="my_tabs_2" className="tab" aria-label="Saved" defaultChecked />
                     <div className="tab-content border-base-300 bg-base-100 px-2 py-2 sm:px-5 sm:py-5 mt-5">
                         {
                             sortedSaved.length>0? sortedSaved.map(workout=><ListedWorkoutCard key={workout.id} workout={workout}></ListedWorkoutCard>) :<ListedWorkoutFallback></ListedWorkoutFallback>
