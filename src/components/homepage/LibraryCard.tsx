@@ -4,8 +4,10 @@ import type { IWorkout } from '@/types/exerciseDataTypes'
 import Image from 'next/image';
 import { FaRegClock, FaRegStar } from 'react-icons/fa';
 import { FaFireFlameCurved } from 'react-icons/fa6';
+import Link from 'next/link';
 const LibraryCard = ({ workout }: { workout: IWorkout }) => {
     return (
+<Link href={`workout-details/${workout.id}`}>
         <div className='rounded-2xl border border-[#404750]'>
             <div className='relative h-60 min-[400px]:h-48 w-full overflow-hidden rounded-t-2xl'>
                 <Image src={workout.image} alt={workout.name} fill className='object-cover'></Image>
@@ -35,6 +37,7 @@ const LibraryCard = ({ workout }: { workout: IWorkout }) => {
                 </div>
             </div>
         </div>
+</Link>
     );
 };
 
