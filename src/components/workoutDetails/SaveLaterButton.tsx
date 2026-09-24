@@ -10,7 +10,7 @@ import { toast } from "react-toastify";
 const SaveLaterButton = ({ workout }: { workout: IWorkout }) => {
     const {saved, setSaved} = useContext(WorkoutContext)
     const handleSaveButton = ()=>{
-        const hasIncludedToSaved = saved.find(w=>w===workout)
+        const hasIncludedToSaved = saved.find(w=>w.id===workout.id)
         if (hasIncludedToSaved) {
             toast.error('Already in saved')
             return
