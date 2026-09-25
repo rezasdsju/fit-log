@@ -13,13 +13,14 @@ const TodayPlanButton = ({ workout }: { workout: IWorkout }) => {
     const { todayPlan, setTodayPlan } = useContext(WorkoutContext)
     console.log(todayPlan)
     const handleTodayClick = () => {
-        // const hasIncludedToTodayplan = todayPlan.find(w => w === workout)
-        const hasIncludedToTodayplan = todayPlan.find(w => w.id === workout.id)
+        // const hasIncludedToTodayplan = todayPlan.find(w => w.id === workout)
+        const hasIncludedToTodayplan = todayPlan.some(w => w.id === workout.id)
         if (hasIncludedToTodayplan) {
             toast.error('Already in your plan')
             return
         }
-        setTodayPlan([...todayPlan, workout])
+        // setTodayPlan([...todayPlan, workout])
+        setTodayPlan(prev=>[...prev, workout])
         toast.success("Added to today's Plan")
 
     }
