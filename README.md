@@ -87,10 +87,13 @@ fit-log/
 │   ├── app/
 │   │   ├── globals.css
 │   │   ├── layout.tsx
+│   │   ├── loading.tsx
+│   │   ├── not-found.tsx
 │   │   ├── page.tsx
 │   │   ├── my-plan/
 │   │   │   └── page.tsx
 │   │   └── workout-details/
+│   │       ├── not-found.tsx
 │   │       └── [id]/
 │   │           └── page.tsx
 │   ├── assets/
@@ -120,7 +123,8 @@ fit-log/
 ├── package.json
 ├── postcss.config.mjs
 ├── tsconfig.json
-└── README.md
+├── README.md
+└── next-env.d.ts
 ```
 
 ## Getting Started
