@@ -11,7 +11,7 @@ import { toast } from "react-toastify";
 const TodayPlanButton = ({ workout }: { workout: IWorkout }) => {
 
     const { todayPlan, setTodayPlan } = useContext(WorkoutContext)
-    console.log(todayPlan)
+    
     const handleTodayClick = () => {
         // const hasIncludedToTodayplan = todayPlan.find(w => w.id === workout)
         const hasIncludedToTodayplan = todayPlan.some(w => w.id === workout.id)
