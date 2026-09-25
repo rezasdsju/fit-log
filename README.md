@@ -20,6 +20,7 @@ FitLog is a responsive workout tracking web application built with Next.js, Reac
   - Calories burned
   - Rating
 - Responsive navigation bar, banner, and workout library.
+- Custom loading and not-found pages.
 
 ## Technologies Used
 
@@ -77,6 +78,10 @@ The application is organized into reusable components, including:
 - Today Plan Button
 - Mark as Done
 - Footer
+
+### Loading and Not Found Pages
+
+Implemented custom loading and not-found pages to provide better user feedback during navigation and when requested content is unavailable.
 
 ## Project Structure
 
