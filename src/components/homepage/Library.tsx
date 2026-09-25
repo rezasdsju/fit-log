@@ -11,7 +11,7 @@ const getWorkoutData = async()=>{
 
 const Library = async() => {
     const workoutData:IWorkout[] = await getWorkoutData()
-    console.log(getWorkoutData)
+    
     return (
         <div className='px-2 sm:px-3 md:px-7 lg:px-10' id='library'>
             <h2 className='font-bold text-2xl text-[]#FFFFFF'>THE LIBRARY</h2>
