@@ -7,7 +7,7 @@ import ListedWorkoutFallback from "@/components/shared/ListedWorkoutFallback";
 
 
 const MyPlanPage = () => {
-    const [sortBy, setSortBy] = useState<'duration'|'calories'|'rating'>('duration')
+    const [sortBy, setSortBy] = useState<''|'duration'|'calories'|'rating'>('')
     // const [todayPlanSelected, setTodayPlanSelected] = useState(false)
     
     const { todayPlan, saved,selectedTab, setSelectedTab} = useContext(WorkoutContext)
@@ -23,7 +23,7 @@ const MyPlanPage = () => {
             sortedWorkout.sort((a,b)=>b.duration-a.duration)
         } else if (sortBy==='calories'){
             sortedWorkout.sort((a,b)=>b.caloriesBurned -a.caloriesBurned)
-        } else {
+        } else if (sortBy==='rating'){
             sortedWorkout.sort((a,b)=>b.rating-a.rating)
         }
         return sortedWorkout
@@ -81,8 +81,8 @@ const MyPlanPage = () => {
                         <h4 className="hidden min-[400px]:block whitespace-nowrap">Sort By</h4>
 
                         
-                            <select onChange={(e)=>setSortBy(e.target.value as 'duration'|'calories'|'rating')} defaultValue="Server location" className="select select-neutral">
-                                <option disabled={true}> Sort</option>
+                            <select onChange={(e)=>setSortBy(e.target.value as ""| 'duration'|'calories'|'rating')} defaultValue="" className="select select-neutral">
+                                <option value="" disabled={true}> Sort</option>
                                 <option value='duration'>Duration</option>
                                 <option value='calories'>Calories</option>
                                 <option value='rating'>Rating</option>
