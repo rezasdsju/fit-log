@@ -7,7 +7,7 @@ import ListedWorkoutFallback from "@/components/shared/ListedWorkoutFallback";
 
 
 const MyPlanPage = () => {
-    const [sortBy, setSortBy] = useState<''|'duration'|'calories'|'rating'>('')
+    const [sortBy, setSortBy] = useState<'duration'|'calories'|'rating'>('duration')
     // const [todayPlanSelected, setTodayPlanSelected] = useState(false)
     
     const { todayPlan, saved,selectedTab, setSelectedTab} = useContext(WorkoutContext)
@@ -81,8 +81,8 @@ const MyPlanPage = () => {
                         <h4 className="hidden min-[400px]:block whitespace-nowrap">Sort By</h4>
 
                         
-                            <select onChange={(e)=>setSortBy(e.target.value as ""| 'duration'|'calories'|'rating')} defaultValue="" className="select select-neutral">
-                                <option value="" disabled={true}> Sort</option>
+                            <select onChange={(e)=>setSortBy(e.target.value as 'duration'|'calories'|'rating')} defaultValue="duration" className="select select-neutral">
+                                <option disabled={true}> Sort</option>
                                 <option value='duration'>Duration</option>
                                 <option value='calories'>Calories</option>
                                 <option value='rating'>Rating</option>
