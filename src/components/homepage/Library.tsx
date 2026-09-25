@@ -13,7 +13,7 @@ const Library = async() => {
     const workoutData:IWorkout[] = await getWorkoutData()
     console.log(getWorkoutData)
     return (
-        <div className='px-2 sm:px-3 md:px-7 lg:px-10'>
+        <div className='px-2 sm:px-3 md:px-7 lg:px-10' id='library'>
             <h2 className='font-bold text-2xl text-[]#FFFFFF'>THE LIBRARY</h2>
             <p className='text-[#9CA3AF]'>Twelve lifts covering every major muscle group.</p>
             <div className='grid grid-cols-1 min-[505px]:grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-6'>
