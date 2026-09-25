@@ -1,7 +1,6 @@
 import type { IWorkout } from "@/types/exerciseDataTypes";
 import Image from "next/image";
-// import { FaRegBookmark } from "react-icons/fa";
-// import { LuCalendarPlus2 } from "react-icons/lu";
+import { notFound } from "next/navigation";
 import TodayPlanButton from "@/components/workoutDetails/TodayPlanButton";
 
 import SaveLaterButton from "@/components/workoutDetails/SaveLaterButton";
@@ -11,6 +10,10 @@ const WorkoutDetailPage = async ({ params }: { params: Promise<{ id: string }> }
     const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}`)
     const workoutData = await res.json()
     const workout: IWorkout = workoutData.find((d: IWorkout) => d.id === parseInt(id))
+
+    if (!workout){
+        notFound()
+    }
     return (
         <div className="grid grid-cols-1  sm:grid-cols-2 gap-5 py-10 ">
             <div className="px-4 py-1">
