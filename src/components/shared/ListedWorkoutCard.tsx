@@ -20,7 +20,7 @@ const ListedWorkoutCard = ({ workout }: { workout: IWorkout }) => {
                     <Image src={workout.image} alt={workout.name} fill className="object-cover"></Image>
                 </div>
                 <div>
-                    <h2 className="text-[#FFFFFF] sm:text-2xl font-semibold">RUSSIAN TWIST</h2>
+                    <h2 className="text-[#FFFFFF] sm:text-2xl font-semibold">{workout.name}</h2>
                     <p className="text-[#8A92A0]">{workout.equipment}</p>
                     <div className='flex flex-wrap gap-4  mt-2 pt-2'>
                         <div className='flex items-center gap-1'>
