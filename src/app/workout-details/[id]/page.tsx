@@ -6,7 +6,7 @@ import TodayPlanButton from "@/components/workoutDetails/TodayPlanButton";
 
 import SaveLaterButton from "@/components/workoutDetails/SaveLaterButton";
 
-const BookDetailPage = async ({ params }: { params: Promise<{ id: string }> }) => {
+const WorkoutDetailPage = async ({ params }: { params: Promise<{ id: string }> }) => {
     const { id } = await params
     const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}`)
     const workoutData = await res.json()
@@ -72,4 +72,4 @@ const BookDetailPage = async ({ params }: { params: Promise<{ id: string }> }) =
     );
 };
 
-export default BookDetailPage;
+export default WorkoutDetailPage;
