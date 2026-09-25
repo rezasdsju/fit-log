@@ -11,12 +11,7 @@ const MyPlanPage = () => {
     // const [todayPlanSelected, setTodayPlanSelected] = useState(false)
     
     const { todayPlan, saved,selectedTab, setSelectedTab} = useContext(WorkoutContext)
-    const handleTodaySelected = ()=>{
-        setSelectedTab('today-plan')
-    }
-    const handleSavedSelected = ()=>{
-        setSelectedTab('saved')
-    }
+
     const sortWorkout = (workout:IWorkout[])=>{
         const sortedWorkout = [...workout]
         if (sortBy==='duration'){
@@ -30,12 +25,12 @@ const MyPlanPage = () => {
     }
     const sortedTodayPlan = sortWorkout(todayPlan)
     const sortedSaved = sortWorkout(saved)
-    const todayPlanDurationTotal = todayPlan.map(workout=>workout.duration).reduce((elem,acc)=>elem+acc, 0)
-    const todayPlanCaloriesTotal = todayPlan.map(workout=>workout.caloriesBurned).reduce((elem,acc)=>elem+acc, 0)
+    const todayPlanDurationTotal = todayPlan.map(workout=>workout.duration).reduce((total,duration)=>total+duration, 0)
+    const todayPlanCaloriesTotal = todayPlan.map(workout=>workout.caloriesBurned).reduce((total,calories)=>total+calories, 0)
 
-    const savedWorkoutDurationTotal = saved.map(workout=>workout.duration).reduce((elem,acc)=>elem+acc,0)
+    const savedWorkoutDurationTotal = saved.map(workout=>workout.duration).reduce((total,duration)=>total+duration,0)
 
-    const savedWorkoutCaloriesTotal = saved.map(workout=>workout.caloriesBurned).reduce((elem,acc)=>elem+acc,0)
+    const savedWorkoutCaloriesTotal = saved.map(workout=>workout.caloriesBurned).reduce((total,calories)=>total+calories,0)
     return (
         <div className="px-3 sm:px-5 py-5 sm:py-10 space-y-4">
             <div>
@@ -57,16 +52,16 @@ const MyPlanPage = () => {
                 </div>
             </div>
             <div className="relative ">
-                {/* name of each tab group should be unique */}
+                
                 <div className="tabs tabs-border w-full ">
-                    <input onClick={handleTodaySelected} type="radio" name="my_tabs_2" className="tab" aria-label="Today’s Plan" />
+                    <input  type="radio" name="my_tabs_2" className="tab" aria-label="Today’s Plan" checked={selectedTab === 'today-plan'} onChange={() => setSelectedTab('today-plan')}/>
                     <div className="tab-content border-base-300 bg-base-100 px-2 py-2 sm:px-5 sm:py-5 mt-5">
                         {
                            sortedTodayPlan.length>0? sortedTodayPlan.map((workout:IWorkout)=> <ListedWorkoutCard key={workout.id} workout={workout}></ListedWorkoutCard>): <ListedWorkoutFallback></ListedWorkoutFallback>
                         }
                     </div>
 
-                    <input onClick={handleSavedSelected} type="radio" name="my_tabs_2" className="tab" aria-label="Saved" defaultChecked />
+                    <input  type="radio" name="my_tabs_2" className="tab" aria-label="Saved"  checked={selectedTab === 'saved'} onChange={() => setSelectedTab('saved')}/>
                     <div className="tab-content border-base-300 bg-base-100 px-2 py-2 sm:px-5 sm:py-5 mt-5">
                         {
                             sortedSaved.length>0? sortedSaved.map(workout=><ListedWorkoutCard key={workout.id} workout={workout}></ListedWorkoutCard>) :<ListedWorkoutFallback></ListedWorkoutFallback>
