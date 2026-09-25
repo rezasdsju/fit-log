@@ -19,8 +19,8 @@ const BookDetailPage = async ({ params }: { params: Promise<{ id: string }> }) =
                 </div>
             </div>
             <div className=" px-3  space-y-4">
-                <h2 className="text-[#FFFFFF]">BARBELL BENCH PRESS</h2>
-                <p className="text-[#9CA3AF]">A compound press that builds chest thickness, triceps, and pressing power from a stable bench.</p>
+                <h2 className="text-[#FFFFFF]">{workout.name.toLocaleUpperCase()}</h2>
+                <p className="text-[#9CA3AF]">{workout.description}</p>
                 <div className='flex gap-4 pb-2'>
 
                     {workout.muscleGroups.map((muscle, index) => <p key={index} className='bg-[#C2F800] px-3 rounded-2xl text-black font-semibold'>{muscle}</p>)}
@@ -58,10 +58,9 @@ const BookDetailPage = async ({ params }: { params: Promise<{ id: string }> }) =
                 </div>
                 <h3 className="text-[#FFFFFF] font-semibold">INSTRUCTIONS</h3>
                 <ol className="list-decimal list-inside">
-                    <li className="text-[#D1D5DB]">Lie on the bench with eyes under the bar and feet planted.</li>
-                    <li className="text-[#D1D5DB]">Unrack with locked elbows and lower the bar to mid-chest.</li>
-                    <li className="text-[#D1D5DB]">Press up in a slight arc until elbows lock without bouncing.</li>
-                    <li className="text-[#D1D5DB]">Keep shoulder blades pinched and a natural arch in the back.</li>
+                    {
+                        workout.instructions.map((instruction,index)=><li key={index} className="text-[#D1D5DB]">{instruction}</li>)
+                    }
                 </ol>
                 <div className="flex py-5 gap-4">
                     <TodayPlanButton workout={workout}></TodayPlanButton>
