@@ -99,6 +99,7 @@ fit-log/
 │   │   │   └── DeleteButton.tsx
 │   │   ├── homepage/
 │   │   │   ├── Banner.tsx
+│   │   │   ├── BrowseButton.tsx
 │   │   │   ├── Library.tsx
 │   │   │   └── LibraryCard.tsx
 │   │   ├── shared/
