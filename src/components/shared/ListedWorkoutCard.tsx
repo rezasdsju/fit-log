@@ -2,7 +2,7 @@ import type { IWorkout } from "@/types/exerciseDataTypes";
 import Image from "next/image";
 import { FaRegClock, FaRegStar } from "react-icons/fa";
 import { FaFireFlameCurved } from "react-icons/fa6";
-// import { TiTick } from "react-icons/ti";
+
 import DeleteButton from "../deleteButton/DeleteButton";
 import Link from "next/link";
 import MarkAsDone from "./MarkAsDone";

@@ -8,7 +8,7 @@ import ListedWorkoutFallback from "@/components/shared/ListedWorkoutFallback";
 
 const MyPlanPage = () => {
     const [sortBy, setSortBy] = useState<'duration'|'calories'|'rating'>('duration')
-    // const [todayPlanSelected, setTodayPlanSelected] = useState(false)
+  
     
     const { todayPlan, saved,selectedTab, setSelectedTab} = useContext(WorkoutContext)
 

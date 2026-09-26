@@ -10,20 +10,17 @@ import { toast } from "react-toastify";
 const MarkAsDone = ({workout}:{workout:IWorkout}) => {
     const {markAsDone, setMarkAsDone} = useContext(WorkoutContext)
 
-    // const hasInMarked = markAsDone.find(markedId=>markedId===workout.id)
+    
     const hasInMarked = markAsDone.includes(workout.id)
    
 
     const handleMarkAsDone = ()=>{
-        // const hasInMarked = markAsDone.find(markedId=>markedId===workout.id)
+        
         if (!hasInMarked){
-            // setMarkAsDone([...markAsDone,workout.id])
             setMarkAsDone(prev=>[...prev, workout.id])
             toast.success('Workout marked as done!');
        
         } else {
-            // const remaining = markAsDone.filter(markId=>markId!==workout.id)
-            // setMarkAsDone(remaining)
             setMarkAsDone(prev=>prev.filter(markId=>markId!==workout.id))
             toast.info('Workout removed from completed list!');
          
