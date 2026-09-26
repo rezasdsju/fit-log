@@ -11,13 +11,11 @@ const SaveLaterButton = ({ workout }: { workout: IWorkout }) => {
     const {saved, setSaved} = useContext(WorkoutContext)
     const hasIncludedToSaved = saved.some(w=>w.id===workout.id)
     const handleSaveButton = ()=>{
-        
-        const hasIncludedToSaved = saved.some(w=>w.id===workout.id)
-        if (hasIncludedToSaved) {
-            toast.error('Already in saved')
-            return
-        }
-        
+        // const hasIncludedToSaved = saved.some(w=>w.id===workout.id)
+        // if (hasIncludedToSaved) {
+        //     toast.error('Already in saved')
+        //     return
+        // }
         setSaved(prev=>[...prev, workout])
         toast.success('Added to Saved')
     }
@@ -26,7 +24,7 @@ const SaveLaterButton = ({ workout }: { workout: IWorkout }) => {
             <span>
                 <FaRegBookmark />
             </span>
-            <button onClick={handleSaveButton} className="text-[#E5E7EB] " disabled={hasIncludedToSaved}>{hasIncludedToSaved?'Already Saved':'Save for later'}</button>
+            <button onClick={handleSaveButton} className={`${hasIncludedToSaved?'text-gray-500 cursor-not-allowed':'text-[#E5E7EB]'}` } disabled={hasIncludedToSaved}>{hasIncludedToSaved?'Already Saved':'Save for later'}</button>
         </div>
     );
 };
