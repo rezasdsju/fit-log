@@ -4,6 +4,7 @@ import { IWorkout } from "@/types/exerciseDataTypes";
 import { useContext } from "react";
 
 import { TiTick } from "react-icons/ti";
+import { toast } from "react-toastify";
 
 
 const MarkAsDone = ({workout}:{workout:IWorkout}) => {
@@ -18,11 +19,13 @@ const MarkAsDone = ({workout}:{workout:IWorkout}) => {
         if (!hasInMarked){
             // setMarkAsDone([...markAsDone,workout.id])
             setMarkAsDone(prev=>[...prev, workout.id])
+            toast.success('Workout marked as done!');
        
         } else {
             // const remaining = markAsDone.filter(markId=>markId!==workout.id)
             // setMarkAsDone(remaining)
             setMarkAsDone(prev=>prev.filter(markId=>markId!==workout.id))
+            toast.info('Workout removed from completed list!');
          
         }
     }
