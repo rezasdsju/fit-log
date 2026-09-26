@@ -11,7 +11,7 @@ import { toast } from "react-toastify";
 const TodayPlanButton = ({ workout }: { workout: IWorkout }) => {
 
     const { todayPlan, setTodayPlan } = useContext(WorkoutContext)
-    
+    const hasIncludedToTodayplan = todayPlan.some(w => w.id === workout.id)
     const handleTodayClick = () => {
         
         const hasIncludedToTodayplan = todayPlan.some(w => w.id === workout.id)
@@ -29,7 +29,7 @@ const TodayPlanButton = ({ workout }: { workout: IWorkout }) => {
             <span>
                 <LuCalendarPlus2 />
             </span>
-            <button onClick={handleTodayClick} className="text-[#0F1115]">Add to today&apos;s plan</button>
+            <button onClick={handleTodayClick} className="text-[#0F1115]" disabled={hasIncludedToTodayplan}>{hasIncludedToTodayplan?'Added to Plan':"Add to today's plan"}</button>
         </div>
     );
 };
