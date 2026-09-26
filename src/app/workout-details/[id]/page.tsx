@@ -1,9 +1,9 @@
 import type { IWorkout } from "@/types/exerciseDataTypes";
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import TodayPlanButton from "@/components/workoutDetails/TodayPlanButton";
+import TodayPlanButton from "@/components/workoutDetailButtons/TodayPlanButton";
 
-import SaveLaterButton from "@/components/workoutDetails/SaveLaterButton";
+import SaveLaterButton from "@/components/workoutDetailButtons/SaveLaterButton";
 
 const WorkoutDetailPage = async ({ params }: { params: Promise<{ id: string }> }) => {
     const { id } = await params
